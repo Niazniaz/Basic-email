@@ -2,7 +2,7 @@ var bodyParser = require("body-parser"),
  express = require("express"),
  app = express();
 const sgMail = require('@sendgrid/mail');
-sgMail.setApiKey('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');
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 
@@ -19,8 +19,8 @@ app.post('/result',function(req,res){
   console.log(msgtxt);
   if(msgtxt){
     const msg = {
-      to: 'zaintheking2000@gmail.com',
-      from: 'sanaa-zain@hotmail.com',
+      to: 'receipent@gmail.com',
+      from: 'sender@hotmail.com',
       subject: 'Sending with Twilio SendGrid is Fun',
       text: msgtxt,
       html: `<strong>${msgtxt}</strong>`,
@@ -29,8 +29,8 @@ app.post('/result',function(req,res){
   }
   else{
     const msg = {
-      to: 'zaintheking2000@gmail.com',
-      from: 'sanaa-zain@hotmail.com',
+      to: 'reciepent@gmail.com',
+      from: 'sender@hotmail.com',
       subject: 'Sending with Twilio SendGrid is Fun',
       text: 'default text',
       html: '<strong>default text</strong>',
